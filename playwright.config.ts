@@ -1,6 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
+  workers: 1, // increase number for parallel tests
   testDir: './src/tests',
   testMatch: ['**/*.web.test.ts'],  
   reporter: [
