@@ -6,5 +6,4 @@ allure-results
 allure-report
 test-results
 .vscode
-test-results/.last-run.json
-test-results/.last-run.json
+
