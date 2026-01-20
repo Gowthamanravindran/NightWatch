@@ -9,7 +9,8 @@
     "test:android": "PLATFORM=android ts-node src/tests",
     "test:ios": "PLATFORM=ios ts-node src/tests",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
-    "allure:open": "allure open allure-report"
+    "allure:open": "allure open allure-report",
+    "allure:serve": "allure serve allure-results"
   },
   "repository": {
     "type": "git",
