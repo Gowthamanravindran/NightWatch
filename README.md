@@ -34,3 +34,5 @@
 #### install dotenv
 > npm install dotenv
 
+#### Run web tests
+> npm run test:web
