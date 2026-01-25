@@ -1,19 +1,18 @@
-import { webCaps } from '../config/webCaps.js';
-import type { Browser } from '../config/webCaps.js';
+import { webCaps, type Browser } from '../config/webCaps.js';
 import type { WebCap } from '../types/webCaps.js';
 
+const DEFAULT_BROWSER: Browser = 'chromium';
+
 export function getWebCaps(): WebCap {
-  const browser = process.env.BROWSER;
+  const browserName = (process.env.TEST_BROWSER || DEFAULT_BROWSER) as Browser;
 
-  if (!browser) {
-    throw new Error('❌ BROWSER env variable is not set');
+  if (!(browserName in webCaps)) {
+    const validBrowsers = Object.keys(webCaps).join(', ');
+    throw new Error(`❌ Unsupported browser "${browserName}". Valid: ${validBrowsers}`);
   }
 
-  if (!(browser in webCaps)) {
-    throw new Error(
-      `❌ Unsupported browser "${browser}". Valid options: ${Object.keys(webCaps).join(', ')}`
-    );
-  }
-
-  return webCaps[browser as Browser];
+  return {
+    ...webCaps[browserName],
+    headless: process.env.HEADLESS !== 'false',
+  };
 }

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { defineConfig } from '@playwright/test';
 import { loadTestData } from './src/configs/testDataLoader.js';
 
@@ -15,7 +16,7 @@ export default defineConfig({
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
         trace: 'on-first-retry',
-      }
+      },
     },
   ],
   reporter: [
