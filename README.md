@@ -36,3 +36,26 @@
 
 #### Run web tests
 > npm run test:web
+
+
+
+
+### Common Issues
+
+#### GPG Key Error when installing Playwright dependencies
+W: GPG error: https://dl.yarnpkg.com/debian stable InRelease: The following signatures were invalid
+
+> sudo apt-key list
+
+And then 
+> sudo apt-key del <Key from the Error>
+
+And then 
+> curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg
+
+Update Package
+> sudo apt update
+
+Retry installation 
+> sudo npx playwright install-deps
+
