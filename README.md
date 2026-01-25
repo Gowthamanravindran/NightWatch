@@ -1,61 +1,79 @@
 # Playts
 
-## Setup
+Playwright Framework with Typescript
+
+#### Tech Stack
+
+Automation Engine : Playwright
+Language : TypeScript
+Reporting : Allure
+
+#### Features
+- Follows POM Model
+- Confiugurable TestData handling
+- Cross Browser Testing
+- 
+
+###  Setup
 
 #### Initialize NPM project
-> npm init -y
-
+	npm init -y
 
 #### Install typescript dependencies
-> npm install -D typescript ts-node ts-node-dev
+	npm install -D typescript ts-node ts-node-dev
 
 #### create tsconfig.json
-> npx tsc --init
+	npx tsc --init
 
 #### Install playwright
-> npm install -D @playwright/test
+	npm install -D @playwright/test
 
 #### Install Browsers
-> npx playwright install
-> sudo npx playwright install-deps
+
+    sudo npx playwright install-deps
+    npx playwright install
 
 #### Validate playwright installation
-> npx playwright test
+	npx playwright test
 
 #### Install allure cli
-> npm install -g allure-commandline
+	npm install -g allure-commandline
 
 #### Install allure dependencies
-> npm install -D allure-playwright allure-commandline
+	npm install -D allure-playwright allure-commandline
 
 #### Validate allure
-> allure --version
+	allure --version
 
 #### install dotenv
-> npm install dotenv
+	npm install dotenv
 
 #### Run web tests
-> npm run test:web
+	npm run test:web
 
-
-
-
-### Common Issues
+### FAQ
 
 #### GPG Key Error when installing Playwright dependencies
+
 W: GPG error: https://dl.yarnpkg.com/debian stable InRelease: The following signatures were invalid
 
-> sudo apt-key list
+	sudo apt-key list
 
-And then 
-> sudo apt-key del <Key from the Error>
 
-And then 
-> curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg
+And then
+
+	sudo apt-key del <Key from  the  Error>
+
+
+And then
+
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg
 
 Update Package
-> sudo apt update
 
-Retry installation 
-> sudo npx playwright install-deps
+	sudo apt update
 
+ 
+Retry installation
+
+	sudo npx playwright install-deps
