@@ -6,6 +6,10 @@
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@fixtures/*": ["./src/core/src/fixtures/*"]
+    }
   }
 }
