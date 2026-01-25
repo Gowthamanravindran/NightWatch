@@ -15,10 +15,7 @@ export default defineConfig({
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
         trace: 'on-first-retry',
-      },
-      options: {
-        testData,
-      } as any,
+      }
     },
   ],
   reporter: [

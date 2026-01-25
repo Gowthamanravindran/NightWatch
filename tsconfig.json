@@ -9,7 +9,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fixtures/*": ["./src/core/src/fixtures/*"]
+      "@fixtures/*": ["./src/core/src/fixtures/*"],
+      "@pages/*": ["./src/web/pages/*"]
     }
   }
 }

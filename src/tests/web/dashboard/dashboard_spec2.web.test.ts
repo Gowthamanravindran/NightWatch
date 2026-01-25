@@ -1,7 +1,7 @@
-import { test, expect } from '../../../core/src/fixtures/base.fixture.js';
+import { test, expect } from '@fixtures/base.fixture.js';
 
 test.describe('Booking.com Dashboard', () => {
-    test('Booking.com search returns results', async ({ page, accountUrl, account }) => {
+    test('Booking.com search returns results', async ({ page, accountUrl }) => {
         await page.goto(accountUrl);
         console.log('Using account:', accountUrl);
         await page.fill('input[placeholder="Where are you going?"]', 'tokyo');
