@@ -26,6 +26,9 @@
   "homepage": "https://github.com/Gowthamanravindran/Playts#readme",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/node": "^25.0.10",
     "allure-commandline": "^2.36.0",
     "allure-playwright": "^3.4.5",
     "ts-node": "^10.9.2",

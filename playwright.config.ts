@@ -1,9 +1,23 @@
 import { defineConfig } from '@playwright/test';
+import { loadTestData } from './src/configs/testDataLoader.js';
+
+const testData = loadTestData();
+const workerCount = testData.base_urls?.length || 1;
 
 export default defineConfig({
-  workers: 1, // increase number for parallel tests
+  workers: workerCount,
   testDir: './src/tests',
-  testMatch: ['**/*.web.test.ts'],  
+  testMatch: ['**/*.web.test.ts'],
+  projects: [
+    {
+      name: 'web',
+      use: {
+        screenshot: 'only-on-failure',
+        video: 'retain-on-failure',
+        trace: 'on-first-retry',
+      }
+    },
+  ],
   reporter: [
     ['list'],
     [
@@ -16,10 +30,5 @@ export default defineConfig({
       },
     ],
   ],
-  use: {
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    trace: 'on-first-retry'
-  },
   outputDir: 'test-results'
 });
