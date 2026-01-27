@@ -12,6 +12,7 @@ export const test = base.extend<
     account: { username: string; password: string };
     page: Page;
     context: BrowserContext;
+    createPage: () => Promise<Page>;
   },
   {
     browser: Browser;
@@ -44,6 +45,28 @@ export const test = base.extend<
     const page = await context.newPage();
     await use(page);
     await page.close();
+  },
+
+  // Factory fixture: creates new page instances on demand
+  createPage: async ({ browser }, use) => {
+    const contexts: BrowserContext[] = [];
+
+    const factory = async (): Promise<Page> => {
+      const caps = getWebCaps();
+      const context = await browser.newContext({
+        viewport: caps.viewport,
+      });
+      const page = await context.newPage();
+      contexts.push(context);
+      return page;
+    };
+
+    await use(factory);
+
+    // Auto-cleanup all created contexts
+    for (const context of contexts) {
+      await context.close();
+    }
   },
 
   // Inject testData as worker-scoped fixture

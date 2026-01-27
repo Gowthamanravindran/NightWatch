@@ -1,4 +1,4 @@
-# Playts
+# NightWatch
 
 Playwright Framework with Typescript
 
