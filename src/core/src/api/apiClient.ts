@@ -66,7 +66,7 @@ class ApiClient {
     const url = this.buildUrl(endpointName, options);
     const headers = this.buildHeaders(options?.headers);
 
-    console.log(`📡 ${method} ${url}`);
+    console.log(`${method} ${url}`);
 
     const response = await fetch(url, {
       method,
