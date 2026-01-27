@@ -10,7 +10,8 @@
     "baseUrl": ".",
     "paths": {
       "@fixtures/*": ["./src/core/src/fixtures/*"],
-      "@pages/*": ["./src/web/pages/*"]
+      "@pages/*": ["./src/web/pages/*"],
+      "@core/*": ["./src/core/src/*"]
     }
   }
 }

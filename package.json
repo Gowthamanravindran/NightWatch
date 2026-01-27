@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:web": "PLATFORM=web npx playwright test src/tests/web",
+    "test:api": "PLATFORM=api npx playwright test src/tests/api",
     "test:android": "PLATFORM=android ts-node src/tests",
     "test:ios": "PLATFORM=ios ts-node src/tests",
     "allure:generate": "allure generate allure-results --clean -o allure-report",

@@ -8,14 +8,20 @@ const workerCount = testData.base_urls?.length || 1;
 export default defineConfig({
   workers: workerCount,
   testDir: './src/tests',
-  testMatch: ['**/*.web.test.ts'],
   projects: [
     {
       name: 'web',
+      testMatch: '**/*.web.test.ts',
       use: {
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
         trace: 'on-first-retry',
+      },
+    },
+    {
+      name: 'api',
+      testMatch: '**/*.api.test.ts',
+      use: {
       },
     },
   ],

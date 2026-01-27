@@ -2,8 +2,21 @@ import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
 
+
+function getTestDataFilename(): string {
+  const stackEnv = process.env.STACK_ENV;
+
+  if (stackEnv) {
+    return `${stackEnv}-test-data.yml`;
+  }
+
+  return 'staging-test-data.yml';
+}
+
 export function loadTestData(): Record<string, any> {
-  const filePath = path.join(process.cwd(), 'src/configs/test-data.yml');
+  const filename = getTestDataFilename();
+  const filePath = path.join(process.cwd(), 'src/configs', filename);
+  console.log(`Loading test data from: ${filename}`);
   if (!fs.existsSync(filePath)) {
     throw new Error(`Test data file not found at ${filePath}`);
   }
