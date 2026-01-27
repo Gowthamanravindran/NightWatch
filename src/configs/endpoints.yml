@@ -1,9 +1,3 @@
-# Base URLs per environment
-base_urls:
-  dev: https://postman-echo.com
-  staging: https://postman-echo.com
-  prod: https://postman-echo.com
-
 # Endpoint definitions with {{}} placeholders
 endpoints:
   # Users

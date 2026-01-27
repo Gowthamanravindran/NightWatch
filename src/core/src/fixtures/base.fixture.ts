@@ -2,6 +2,7 @@ import { test as base, type Page, type BrowserContext, type Browser } from '@pla
 import { loadTestData, getAccountForWorker } from '../../../configs/testDataLoader.js';
 import { WebDriver } from '../driver/webDriver.js';
 import { getWebCaps } from '../utils/env.js';
+import { ApiClient } from '../api/apiClient.js';
 
 const testData = loadTestData();
 
@@ -10,6 +11,7 @@ export const test = base.extend<
     testData: Record<string, any>;
     accountUrl: string;
     account: { username: string; password: string };
+    api: ApiClient;
     page: Page;
     context: BrowserContext;
     createPage: () => Promise<Page>;
@@ -21,7 +23,7 @@ export const test = base.extend<
   // Worker-scoped browser fixture
   browser: [async ({}, use) => {
     const caps = getWebCaps();
-    console.log('\n🚀 Browser Configuration:');
+    console.log('\n Browser Configuration:');
     console.log(`   Browser: ${caps.browserName}`);
     console.log(`   Headless: ${caps.headless}`);
     console.log(`   Viewport: ${caps.viewport?.width}x${caps.viewport?.height}\n`);
@@ -100,6 +102,13 @@ export const test = base.extend<
     },
     { scope: 'test' },
   ],
+
+  // API client fixture: pre-configured with accountUrl as base
+  api: async ({ accountUrl }, use) => {
+    const apiClient = new ApiClient(accountUrl);
+    console.log(`API Base URL: ${accountUrl}`);
+    await use(apiClient);
+  },
 });
 
 export { expect } from '@playwright/test';

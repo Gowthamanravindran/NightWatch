@@ -3,7 +3,6 @@ import path from 'path';
 import yaml from 'js-yaml';
 
 interface EndpointsConfig {
-  base_urls: Record<string, string>;
   endpoints: Record<string, string>;
 }
 
@@ -18,7 +17,9 @@ function loadConfig(): EndpointsConfig {
   return config;
 }
 
-
+/**
+ * Substitutes {{placeholder}} with provided values
+ */
 function substituteParams(template: string, params: Record<string, string | number>): string {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
     if (!(key in params)) {
@@ -28,37 +29,9 @@ function substituteParams(template: string, params: Record<string, string | numb
   });
 }
 
-export function getBaseUrl(env?: string): string {
-  const cfg = loadConfig();
-  const environment = env || process.env.API_ENV || 'dev';
-  const baseUrl = cfg.base_urls[environment];
-
-  if (!baseUrl) {
-    throw new Error(`Unknown environment: ${environment}. Valid: ${Object.keys(cfg.base_urls).join(', ')}`);
-  }
-
-  return baseUrl;
-}
-
-// Get a full URL for an endpoint with parameter substitution
-export function getEndpoint(
-  name: string,
-  params: Record<string, string | number> = {},
-  env?: string
-): string {
-  const cfg = loadConfig();
-  const template = cfg.endpoints[name];
-
-  if (!template) {
-    throw new Error(`Unknown endpoint: ${name}. Available: ${Object.keys(cfg.endpoints).join(', ')}`);
-  }
-
-  const endpointPath = substituteParams(template, params);
-  const baseUrl = getBaseUrl(env);
-
-  return `${baseUrl}${endpointPath}`;
-}
-
+/**
+ * Get the path for an endpoint with parameter substitution
+ */
 export function getPath(
   name: string,
   params: Record<string, string | number> = {}
@@ -67,9 +40,16 @@ export function getPath(
   const template = cfg.endpoints[name];
 
   if (!template) {
-    throw new Error(`Unknown endpoint: ${name}`);
+    throw new Error(`Unknown endpoint: ${name}. Available: ${Object.keys(cfg.endpoints).join(', ')}`);
   }
 
   return substituteParams(template, params);
 }
 
+/**
+ * Get list of all available endpoint names
+ */
+export function getAvailableEndpoints(): string[] {
+  const cfg = loadConfig();
+  return Object.keys(cfg.endpoints);
+}

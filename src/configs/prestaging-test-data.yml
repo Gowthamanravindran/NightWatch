@@ -1,6 +1,6 @@
 # Production Environment Test Data
 base_urls:
-  - https://www.demoblaze.com
+  - https://www.postman-echo.com
   - https://www.booking.com
 
 accounts:
