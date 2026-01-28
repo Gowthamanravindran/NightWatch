@@ -1,10 +1,10 @@
 import { test, expect } from '@fixtures/base.fixture.js';
-import { ApiClient, createApiClient } from '@core/api/index.js';
+import { RestApiClient, createRestApiClient } from '@core/api/index.js';
 
 test.describe('Sample API Tests', () => {
   // Using the pre-configured api fixture (uses accountUrl as base)
-  test('Validate api calls with stubs', async ({ api }) => {
-    const createRes = await api.get<any>('test_get', {
+  test('Validate api calls with stubs', async ({ restApi }) => {
+    const createRes = await restApi.get<any>('test_get', {
       params: {
         testparam1: "night",
         testparam2: "watch"
@@ -16,7 +16,7 @@ test.describe('Sample API Tests', () => {
 
   // Creating a custom API instance with a different base URL
   test('Validate using custom api instance', async () => {
-    const customApi = createApiClient('https://postman-echo.com');
+    const customApi = createRestApiClient('https://postman-echo.com');
     
     const res = await customApi.get<any>('test_get', {
       params: {
@@ -28,19 +28,19 @@ test.describe('Sample API Tests', () => {
   });
 
   test('Validate api with auth', async () => {
-    const authApi = new ApiClient('https://postman-echo.com');
+    const authApi = new RestApiClient('https://postman-echo.com');
     authApi.setAuthToken('my-jwt-token');
     authApi.setDefaultHeaders({ 'X-Custom-Header': 'value' });
 
     expect(authApi.getBaseUrl()).toBe('https://postman-echo.com');
   });
 
-  test('Validate multiple api instances', async ({ api, accountUrl }) => {
-    console.log(`Base URL API base: ${api.getBaseUrl()}`);
-    const paymentApi = createApiClient('https://postman-echo.com');
-    const analyticsApi = createApiClient('https://postman-echo.com');
+  test('Validate multiple api instances', async ({ restApi, accountUrl }) => {
+    console.log(`Base URL API base: ${restApi.getBaseUrl()}`);
+    const paymentApi = createRestApiClient('https://postman-echo.com');
+    const analyticsApi = createRestApiClient('https://postman-echo.com');
 
-    expect(api.getBaseUrl()).toBe(accountUrl);
+    expect(restApi.getBaseUrl()).toBe(accountUrl);
     expect(paymentApi.getBaseUrl()).toBe('https://postman-echo.com');
     expect(analyticsApi.getBaseUrl()).toBe('https://postman-echo.com');
   });

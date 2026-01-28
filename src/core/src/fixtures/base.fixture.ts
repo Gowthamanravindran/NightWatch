@@ -2,7 +2,7 @@ import { test as base, type Page, type BrowserContext, type Browser } from '@pla
 import { loadTestData, getAccountForWorker } from '../../../configs/testDataLoader.js';
 import { WebDriver } from '../driver/webDriver.js';
 import { getWebCaps } from '../utils/env.js';
-import { ApiClient } from '../api/apiClient.js';
+import { RestApiClient } from '../api/restApiClient.js';
 
 const testData = loadTestData();
 
@@ -11,7 +11,7 @@ export const test = base.extend<
     testData: Record<string, any>;
     accountUrl: string;
     account: { username: string; password: string };
-    api: ApiClient;
+    restApi: RestApiClient;
     page: Page;
     context: BrowserContext;
     createPage: () => Promise<Page>;
@@ -104,8 +104,8 @@ export const test = base.extend<
   ],
 
   // API client fixture: pre-configured with accountUrl as base
-  api: async ({ accountUrl }, use) => {
-    const apiClient = new ApiClient(accountUrl);
+  restApi: async ({ accountUrl }, use) => {
+    const apiClient = new RestApiClient(accountUrl);
     console.log(`API Base URL: ${accountUrl}`);
     await use(apiClient);
   },

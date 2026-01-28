@@ -14,7 +14,7 @@ export interface RequestOptions {
   timeout?: number;
 }
 
-export class ApiClient {
+export class RestApiClient {
   private baseUrl: string = '';
   private defaultHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ export class ApiClient {
   private authToken: string | null = null;
 
   /**
-   * Create a new ApiClient instance
+   * Create a new RestApiClient instance
    * @param baseUrl - The base URL for all API requests
    */
   constructor(baseUrl?: string) {
@@ -194,8 +194,8 @@ export class ApiClient {
 }
 
 /**
- * Create a new ApiClient instance with the given base URL
+ * Create a new Rest Api Client instance with the given base URL
  */
-export function createApiClient(baseUrl: string): ApiClient {
-  return new ApiClient(baseUrl);
+export function createRestApiClient(baseUrl: string): RestApiClient {
+  return new RestApiClient(baseUrl);
 }
