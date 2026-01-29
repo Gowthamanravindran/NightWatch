@@ -3,21 +3,23 @@ import { loadTestData, getAccountForWorker } from '../../../configs/testDataLoad
 import { WebDriver } from '../driver/webDriver.js';
 import { getWebCaps } from '../utils/env.js';
 import { RestApiClient } from '../api/restApiClient.js';
+import { GraphQLClient } from '../api/graphqlClient.js';
 
 const testData = loadTestData();
 
 export const test = base.extend<
   {
     testData: Record<string, any>;
-    accountUrl: string;
-    account: { username: string; password: string };
     restApi: RestApiClient;
+    graphql: GraphQLClient;
     page: Page;
     context: BrowserContext;
     createPage: () => Promise<Page>;
   },
   {
     browser: Browser;
+    accountUrl: string;
+    account: { username: string; password: string };
   }
 >({
   // Worker-scoped browser fixture
@@ -76,38 +78,49 @@ export const test = base.extend<
     await use(testData);
   }, { scope: 'worker' }],
 
-  // Test fixture: pick accountUrl based on workerIndex
+  // Worker scoped fixture: pick accountUrl based on parallelIndex
   accountUrl: [
     async ({}, use, workerInfo) => {
       const urls = testData.base_urls;
       if (!Array.isArray(urls) || urls.length === 0) {
         throw new Error('No base_urls defined in test-data.yml');
       }
-      const url = urls[workerInfo.workerIndex];
+      const url = urls[workerInfo.parallelIndex];
       if (!url) {
         throw new Error(
-          `No base_url found for workerIndex ${workerInfo.workerIndex}. Available URLs: ${urls.length}`
+          `No base_url found for parallelIndex ${workerInfo.parallelIndex}. Available URLs: ${urls.length}`
         );
       }
       await use(url);
     },
-    { scope: 'test' },
+    { scope: 'worker' },
   ],
 
-  // Test fixture: pick account based on workerIndex
+  // Worker scoped fixture: pick account based on parallelIndex
   account: [
     async ({}, use, workerInfo) => {
-      const account = getAccountForWorker(testData, workerInfo.workerIndex);
+      const account = getAccountForWorker(testData, workerInfo.parallelIndex);
       await use(account);
     },
-    { scope: 'test' },
+    { scope: 'worker' },
   ],
 
   // API client fixture: pre-configured with accountUrl as base
   restApi: async ({ accountUrl }, use) => {
     const apiClient = new RestApiClient(accountUrl);
-    console.log(`API Base URL: ${accountUrl}`);
+    console.log(`REST API Base URL: ${accountUrl}`);
     await use(apiClient);
+  },
+
+  // GraphQL client fixture: pre-configured with graphql_base_url from test data
+  graphql: async ({}, use) => {
+    const graphqlUrl = testData.graphql_base_url;
+    if (!graphqlUrl) {
+      throw new Error('graphql_base_url not defined in test-data.yml');
+    }
+    const graphqlClient = new GraphQLClient(graphqlUrl);
+    console.log(`GraphQL Base URL: ${graphqlUrl}`);
+    await use(graphqlClient);
   },
 });
 

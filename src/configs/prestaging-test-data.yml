@@ -3,6 +3,8 @@ base_urls:
   - https://www.postman-echo.com
   - https://www.booking.com
 
+graphql_base_url: https://countries.trevorblades.com/graphql
+
 accounts:
   - username: prod_user1
     password: prod_pass1

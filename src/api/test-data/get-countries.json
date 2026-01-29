@@ -1,0 +1,4 @@
+{
+  "query": "query GetCountries { countries { code name emoji } }",
+  "variables": {}
+}

@@ -2,6 +2,8 @@ base_urls:
   - https://booking.com
   - https://demoblaze.com
 
+graphql_base_url: https://countries.trevorblades.com/graphql
+
 accounts:
   - username: testuser1
     password: testpass1
