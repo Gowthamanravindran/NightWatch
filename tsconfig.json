@@ -8,6 +8,7 @@
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": ".",
+    // "types": "types": ["node", "@wdio/globals/types", "@wdio/mocha-framework"],
     "paths": {
       "@fixtures/*": ["./src/core/src/fixtures/*"],
       "@pages/*": ["./src/web/pages/*"],

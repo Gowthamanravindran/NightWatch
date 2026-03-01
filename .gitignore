@@ -7,4 +7,5 @@ allure-report
 test-results
 .vscode
 
+	/cmdline-tools
 test-results/.last-run.json
