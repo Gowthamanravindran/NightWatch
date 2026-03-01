@@ -1,0 +1,44 @@
+{
+  "name": "playts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:web": "PLATFORM=web npx playwright test src/tests/web",
+    "test:api": "PLATFORM=api npx playwright test src/tests/api",
+    "test:android": "PLATFORM=android ts-node src/tests",
+    "test:ios": "PLATFORM=ios ts-node src/tests",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:serve": "allure serve allure-results"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gowthamanravindran/Playts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Gowthamanravindran/Playts/issues"
+  },
+  "homepage": "https://github.com/Gowthamanravindran/Playts#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/node": "^25.0.10",
+    "allure-commandline": "^2.37.0",
+    "allure-playwright": "^3.5.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "js-yaml": "^4.1.1",
+    "playwright": "^1.58.2"
+  }
+}

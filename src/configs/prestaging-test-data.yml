@@ -1,0 +1,21 @@
+# Production Environment Test Data
+base_urls:
+  - https://www.postman-echo.com
+  - https://www.booking.com
+
+graphql_base_url: https://countries.trevorblades.com/graphql
+
+accounts:
+  - username: prod_user1
+    password: prod_pass1
+  - username: prod_user2
+    password: prod_pass2
+
+credentials:
+  username: prod_testuser
+  password: prod_testpass
+
+admin_credentials:
+  admin_username: prod_admin
+  admin_password: prod_adminpass
+
