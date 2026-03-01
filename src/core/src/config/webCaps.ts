@@ -1,4 +1,4 @@
-import type { WebCap } from '../types/webCaps.js';
+import type { WebCap } from '../types/webCaps';
 
 export const webCaps = {
   chromium: {

@@ -1,5 +1,5 @@
 import { chromium, firefox, webkit, type Browser } from '@playwright/test';
-import type { WebCap } from '../types/webCaps.js';
+import type { WebCap } from '../types/webCaps';
 
 export class WebDriver {
   static async create(caps: WebCap): Promise<{ browser: Browser }> {

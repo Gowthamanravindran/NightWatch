@@ -1,4 +1,4 @@
-import { test, expect } from '@fixtures/base.fixture.js';
+import { test, expect } from '@fixtures/base.fixture';
 
 test.describe('Booking.com Dashboard', () => {
     test('Booking.com search returns results', async ({ page, accountUrl }) => {

@@ -1,5 +1,5 @@
-import { test, expect } from '@fixtures/base.fixture.js';
-import { GraphQLClient, createGraphQLClient } from '@core/api/index.js';
+import { test, expect } from '@fixtures/base.fixture';
+import { GraphQLClient, createGraphQLClient } from '@core/api/index';
 
 test.describe('GraphQL Tests', () => {
   // Using the pre-configured graphql fixture

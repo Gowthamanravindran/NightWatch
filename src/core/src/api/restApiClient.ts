@@ -1,4 +1,4 @@
-import { getPath } from './endpoints.js';
+import { getPath } from './endpoints';
 
 export interface ApiResponse<T = unknown> {
   status: number;

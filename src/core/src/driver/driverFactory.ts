@@ -1,5 +1,5 @@
-import { WebDriver } from './webDriver.js';
-import { getWebCaps } from '../utils/env.js';
+import { WebDriver } from './webDriver';
+import { getWebCaps } from '../utils/env';
 
 export class DriverFactory {
   static async create() {

@@ -1,5 +1,5 @@
-import { webCaps, type Browser } from '../config/webCaps.js';
-import type { WebCap } from '../types/webCaps.js';
+import { webCaps, type Browser } from '../config/webCaps';
+import type { WebCap } from '../types/webCaps';
 
 const DEFAULT_BROWSER: Browser = 'chromium';
 

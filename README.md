@@ -36,6 +36,12 @@ Reporting : Allure
 #### Validate playwright installation
 	npx playwright test
 
+#### Install openjdk ( Required for allure local - only needed if not already present)
+	brew install openjdk
+
+#### Install allure
+	brew install allure
+
 #### Install allure cli
 	npm install -g allure-commandline
 
@@ -72,8 +78,25 @@ And then
 Update Package
 
 	sudo apt update
-
  
 Retry installation
 
 	sudo npx playwright install-deps
+
+#### JRE Error
+
+If you get errors when JRE is not available
+In MAC, with Homebrew - Check if openjdk is installed
+	brew install openjdk
+
+If already instealled - Check if MacOS can detect it 
+	/usr/libexec/java_home -V
+
+Let Homebrew detect openjdk
+	sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk \/Library/Java/JavaVirtualMachines/openjdk.jdk
+
+Then try 
+	/usr/libexec/java_home -V
+
+Now check
+	java -version

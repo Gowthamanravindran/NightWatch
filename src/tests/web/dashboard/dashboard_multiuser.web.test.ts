@@ -1,4 +1,4 @@
-import {test, expect} from '@fixtures/base.fixture.js'
+import {test, expect} from '@fixtures/base.fixture'
 
 test.describe('Multi Browser Caps Check', () => {
     test('', async({ page, accountUrl, createPage}) => {

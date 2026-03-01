@@ -1,5 +1,5 @@
-import { test, expect } from '@fixtures/base.fixture.js';
-import { RestApiClient, createRestApiClient } from '@core/api/index.js';
+import { test, expect } from '@fixtures/base.fixture';
+import { RestApiClient, createRestApiClient } from '@core/api/index';
 
 test.describe('Sample API Tests', () => {
   // Using the pre-configured api fixture (uses accountUrl as base)

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { type GraphQLResponse, type GraphQLError, type GraphQLRequestOptions, type GraphQLTestData } from '../types/graphqlTypes.js';
+import { type GraphQLResponse, type GraphQLError, type GraphQLRequestOptions, type GraphQLTestData } from '../types/graphqlTypes';
 
 
 

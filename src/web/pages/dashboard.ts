@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-import { DashboardLocators } from '../locators/dashboard.js';
+import { DashboardLocators } from '../locators/dashboard';
 
 
 export class DashboardPage {

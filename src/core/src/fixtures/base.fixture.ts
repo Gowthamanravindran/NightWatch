@@ -1,9 +1,9 @@
 import { test as base, type Page, type BrowserContext, type Browser } from '@playwright/test';
-import { loadTestData, getAccountForWorker } from '../../../configs/testDataLoader.js';
-import { WebDriver } from '../driver/webDriver.js';
-import { getWebCaps } from '../utils/env.js';
-import { RestApiClient } from '../api/restApiClient.js';
-import { GraphQLClient } from '../api/graphqlClient.js';
+import { loadTestData, getAccountForWorker } from '../../../configs/testDataLoader';
+import { WebDriver } from '../driver/webDriver';
+import { getWebCaps } from '../utils/env';
+import { RestApiClient } from '../api/restApiClient';
+import { GraphQLClient } from '../api/graphqlClient';
 
 const testData = loadTestData();
 
