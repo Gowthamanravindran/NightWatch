@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { defineConfig } from '@playwright/test';
-import { loadTestData } from './src/configs/testDataLoader.js';
+import { loadTestData } from '../../../configs/testDataLoader';
 
 const testData = loadTestData();
 const workerCount = testData.base_urls?.length || 1;
